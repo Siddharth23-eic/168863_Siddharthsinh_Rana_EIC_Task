@@ -45,5 +45,6 @@ void task10_movenode(){
     printlist(listB);
 
     freelist(listA);
-    freelist(listB); 
+    freelist(listB);
+    return;
 }

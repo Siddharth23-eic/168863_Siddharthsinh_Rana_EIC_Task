@@ -36,13 +36,13 @@ int32_t bt_search(Tree *root, int32_t data){
 void bt_inorder(Tree *root){
     if(!root) return;
     bt_inorder(root->left);
-    printf("%d", root->data);
+    printf("%d ", root->data);
     bt_inorder(root->right);
 }
 
 void bt_preorder(Tree *root){
     if(!root) return;
-    printf("%d", root->data);
+    printf("%d ", root->data);
     bt_preorder(root->left);
     bt_preorder(root->right);
 }
@@ -51,7 +51,7 @@ void bt_postorder(Tree *root){
     if(!root) return;
     bt_postorder(root->left);
     bt_postorder(root->right);
-    printf("%d", root->data);
+    printf("%d ", root->data);
 }
 
 static Tree *find_min(Tree *root){
@@ -76,7 +76,7 @@ Tree *bt_delete(Tree *root, int32_t data){
             return temp;
         }
         else if(!root->right){
-            Tree *temp = root->right;
+            Tree *temp = root->left;
             free(root);
             return temp;
         }

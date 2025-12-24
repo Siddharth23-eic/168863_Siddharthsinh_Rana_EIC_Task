@@ -40,5 +40,5 @@ void task9_removedup() {
     printlist(head);
 
     freelist(head);
-    return 0;
+    return;
 }

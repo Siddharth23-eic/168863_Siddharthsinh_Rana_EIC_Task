@@ -38,5 +38,5 @@ void task7_insertsort(){
     printf("Sorted list:\n");
     printlist(list);
 
-    return 0;
+    return;
 }

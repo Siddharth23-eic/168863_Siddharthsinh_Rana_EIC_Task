@@ -31,5 +31,5 @@ void task1_count(){
     scanf("%d", &n);
     int32_t result = Count(Mylist, n);
     printf("Number %d appeared %d times.\n",n, result);
-    return 0;
+    return;
 }

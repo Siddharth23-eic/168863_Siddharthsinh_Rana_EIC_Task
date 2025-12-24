@@ -32,4 +32,5 @@ void task2_getnth(){
    scanf("%d", &n);
    int32_t result = GetNth(list, n);
    printf("Data at position %d is %d.", n, result);
- }
+   return;
+}

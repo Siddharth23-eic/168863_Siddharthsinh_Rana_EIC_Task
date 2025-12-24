@@ -16,9 +16,10 @@ void task1_treeLL(void){
         root = bt_insert(root, val);
     }
 
-    printf("Inorder traversal: ");
+    printf("The tree is(Traversed in inorder): \n");
     bt_inorder(root);
     printf("\n");
 
     bt_free(root);
+    return;
 }

@@ -29,4 +29,5 @@ void task6_sortedinsert(){
         sortedinsert(&List, num);
     }
     printlist(List);
+    return;
 }

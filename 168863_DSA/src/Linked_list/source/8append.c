@@ -48,5 +48,5 @@ void task8_append(){
 
     printlist(listA);
 
-    return 0;
+    return;
 }

@@ -57,4 +57,5 @@ void task4_pop(){
       printf("Popped: %d\n", pop(&head));
    }
    pop(&head);
+   return;
 }

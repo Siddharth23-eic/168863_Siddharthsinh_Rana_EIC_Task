@@ -11,7 +11,7 @@ int32_t main(){
 
     while(1){
         printf("\nEnter a choice for the tasks\n");
-        printf("0.EXIT 1.LL 2.Q 3.St 4.BT :\n");
+        printf("0.EXIT\n 1.LL\n 2.QUEUE\n 3.STACK\n 4.BT\n 5.YPK :\n");
         scanf("%d", &choice);
         
         switch(choice){
@@ -28,6 +28,10 @@ int32_t main(){
                 mainSt();
                 break;
             case 4:
+                mainBT();
+                break;
+            case 5:
+                mainYPK();
                 break;
             default:
                 printf("Wrong choice\n");

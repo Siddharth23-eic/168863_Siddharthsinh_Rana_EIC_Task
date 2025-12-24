@@ -50,4 +50,5 @@ void task5_insertnth(){
     insert_at_n(&head, 3, 24);
     printf("After inserting: "); 
     printlist(head); 
+    return;
 }

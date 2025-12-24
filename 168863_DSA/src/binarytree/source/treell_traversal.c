@@ -3,8 +3,7 @@
 #include "BT_TASK.h"
 #include "binarytree.h"
 
-void task2_treell_traversal(void)
-{
+void task2_treell_traversal(void){
     Tree *root = NULL;
     int32_t n, val;
 
@@ -17,6 +16,7 @@ void task2_treell_traversal(void)
         root = bt_insert(root, val);
     }
 
+    printf("LL tree traversals:\n");
     printf("Inorder: ");
     bt_inorder(root);
 
@@ -29,4 +29,6 @@ void task2_treell_traversal(void)
     printf("\n");
 
     bt_free(root);
+
+    return;
 }

@@ -32,4 +32,5 @@ void task3_deletelist(){
 
     deleteList(&Mylist);
     printlist(Mylist);
+    return;
 }

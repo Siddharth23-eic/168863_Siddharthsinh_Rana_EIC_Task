@@ -13,13 +13,6 @@ void task2_treearr_traversal(void);
 void task2_treell_traversal(void);
 
 /* Exercise 3 */
-/* Search element in BST */
-void task3_tree_search(void);
-
-/* Insert element in BST */
-void task3_tree_insert(void);
-
-/* Delete element from BST */
-void task3_tree_delete(void);
+void task3(void);
 
 #endif

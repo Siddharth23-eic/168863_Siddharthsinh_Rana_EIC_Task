@@ -19,7 +19,7 @@ int32_t mainLL(){
             task3_deletelist();
             break;
         case 4:
-            task4_deletelist_alt();
+            task4_pop();
             break;
         case 5: 
             task5_insertnth();

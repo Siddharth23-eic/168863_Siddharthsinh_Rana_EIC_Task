@@ -13,10 +13,11 @@ it should print a message indicating to the user whether or not the string is a 
 #include <ctype.h>
 #include <string.h>
 #include "queue.h"
+#include "Qtasks.h"
 
 #define SIZE 1000
 
-int main() {
+int32_t task1_palindrome(){
     Queue org, rev;
     initqueue(&org);
     initqueue(&rev);

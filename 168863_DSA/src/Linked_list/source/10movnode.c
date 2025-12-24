@@ -6,72 +6,44 @@
 */ 
 #include <stdio.h> 
 #include <stdint.h> 
-#include <stdlib.h> 
+#include <stdlib.h>
+#include "LinkedList.h"
+#include "LLtask.h"
 
-struct node{ 
-    int32_t data; 
-    struct node* next; 
-}; 
+void pushnode(Node **lista, Node **listb){ 
+    if(*listb == NULL)
+        return;
+        
+    Node *temp = *listb;
+    *listb = temp->next;
 
-void printlist(struct node* head) { 
-    while (head != NULL) { 
-        printf("%d%s", head->data, head->next ? "->" : ""); 
-        head = head->next; } printf("\n"); 
+    temp->next = *lista;
+    *lista = temp;
 } 
 
-/* create list and push at the end */ 
-void push(struct node **headref, int32_t data){ 
-    struct node *newnode = malloc(sizeof(struct node)); 
-    newnode->data = data; newnode->next = NULL; 
-    
-    /* Checking list is empty */ 
-    if(*headref == NULL){ 
-        *headref = newnode; return; 
-    } 
-    
-    /* Traverse to the end */ 
-    struct node* curr = *headref; 
-    while(curr->next != NULL){ 
-        curr = curr->next; 
-    } 
-    curr->next = newnode; 
-} 
+void task10_movenode(){ 
+    Node* listA = NULL; 
+    Node* listB = NULL; 
 
-void pushnode(struct node **lista, struct node **listb){ 
-    struct node* a = *lista; 
-    struct node* b = *listb; 
-    struct node* head = b; 
-    head->next = a; 
-    b = b->next; 
-} 
-
-int32_t main(){ 
-    struct node* listA = NULL; 
-    struct node* listB = NULL; 
-    int32_t n, m; 
-    
-    printf("Enter a number of nodes for listA: "); 
-    scanf("%d", &n); 
-    
-    printf("Enter a number of nodes for listB: "); 
-    scanf("%d", &m); int32_t num; 
-    
     /* Pushing data in ListA */ 
-    printf("Enter total n data to push on listA\n"); 
-    for(int32_t i = 0; i < n; i++){ 
-        scanf("%d",&num); 
-        push(&listA, num); 
-    } 
-    
+    build_list(&listA);
     /* Pushing data in ListB */ 
-    printf("Enter total n data to push on listB\n"); 
-    for(int32_t i = 0; i < m; i++){ 
-        scanf("%d",&num); 
-        push(&listB, num); 
-    } 
+    build_list(&listB);
+
+    printf("Before movig node: \n");
+    printf("List A: ");
+    printlist(listA);
+    printf("List B: ");
+    printlist(listB);
     
-    pushnode(&listA, &listB); 
-    printlist(listA); 
-    printlist(listB); 
-    return 0; 
+    pushnode(&listA, &listB);
+
+    printf("After movig node: \n");
+    printf("List A: ");
+    printlist(listA);
+    printf("List B: ");
+    printlist(listB);
+
+    freelist(listA);
+    freelist(listB); 
 }

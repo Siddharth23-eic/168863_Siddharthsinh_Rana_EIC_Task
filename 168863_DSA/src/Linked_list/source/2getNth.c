@@ -25,11 +25,11 @@ int32_t GetNth(Node* head, int32_t number){
 void task2_getnth(){
    Node* list = NULL;
    int32_t n;
-   printf("Enter the index: ");
-   scanf("%d", &n);
    
    build_list(&list);
 
-   int32_t result = GetNth(list, 1);
-   printf("Data at 1st position is %d.", result);
+   printf("Enter the index: ");
+   scanf("%d", &n);
+   int32_t result = GetNth(list, n);
+   printf("Data at position %d is %d.", n, result);
  }

@@ -10,7 +10,7 @@ typedef struct node{
 /* Top of stack */
 Stack *top = NULL;
 
-void push(int32_t chr){
+void pushSt(int32_t chr){
     Stack *newnode = malloc(sizeof(Stack));
     if(!newnode)
         return;
@@ -20,7 +20,7 @@ void push(int32_t chr){
     top = newnode;
 }
 
-int32_t pop(){
+int32_t popSt(){
     if(top == NULL)
         return '\0';
     
@@ -39,7 +39,7 @@ int32_t isMatching(int32_t open, int32_t close){
            (open == '[' && close == ']');
 }
 
-int32_t main(){
+int32_t mainSt(){
     char expr[100];
 
     printf("Enter expression\n");
@@ -49,7 +49,7 @@ int32_t main(){
         int32_t chr = expr[i];
 
         if(chr == '(' || chr == '{' || chr == '['){
-            push(chr);
+            pushSt(chr);
         }
 
         else if(chr == ')' || chr == '}' || chr == ']'){
@@ -58,7 +58,7 @@ int32_t main(){
                 return 0;
             }
 
-            int32_t popped = pop();
+            int32_t popped = popSt();
             if(!isMatching(popped, chr)){
                 printf("Not Balanced\n");
                 return 0;

@@ -1,8 +1,8 @@
 #include <stdio.h>
-#include <stdint.h>
 #include "queue.h"
+#include "Qtasks.h"
 
-int32_t main(){
+int32_t task2_3add1rem(void){
     int32_t count = 0;
     int32_t arr[] = {2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24};
     size_t len = sizeof(arr)/sizeof(arr[0]);
@@ -18,6 +18,6 @@ int32_t main(){
         }
     }
 
-    printqueue(&q);
+    printQueue(&q);
     return 0;
 }

@@ -1,3 +1,9 @@
+/* Owner: Siddharthsinh Rana
+*  Date: 23/12/2025
+*  Topic: Queue(using Linked list)
+*  Description: A common .h file for the supporting function for queue.
+*/
+
 #ifndef QUEUE_H
 #define QUEUE_H
 

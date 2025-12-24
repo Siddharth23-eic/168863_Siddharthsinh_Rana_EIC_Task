@@ -1,3 +1,9 @@
+/* Owner: Siddharthsinh Rana
+*  Date: 22/12/2025
+*  Topic: Linked List
+*  Description: A common .h file for the supporting function for LinkedList.
+*/
+
 #ifndef LINKLIST_H
 #define LINKLIST_H
 

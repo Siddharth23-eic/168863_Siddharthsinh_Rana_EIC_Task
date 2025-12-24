@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include <stdint.h> 
-#include "queue.h" 
+#include "queue.h"
+#include "Qtasks.h" 
 
 char exists(Queue *q, int32_t val){ 
     Node* curr = q->front; 
@@ -12,7 +13,7 @@ char exists(Queue *q, int32_t val){
     return '0'; 
 } 
 
-int32_t main(){ 
+int32_t task3_todo(){ 
     Queue *q = malloc(sizeof(Queue)); 
     initqueue(q); 
     
@@ -28,7 +29,7 @@ int32_t main(){
         count++; 
     } 
     
-    printqueue(q);
+    printQueue(q);
 
     freeQueue(q);
     free(q);

@@ -1,3 +1,9 @@
+/* Owner: Siddharthsinh Rana
+*  Date: 22/12/2025
+*  Topic: Linked list
+*  Description: A .h file for the taskname function for LinkedList.
+*/
+
 #ifndef LLTASK_H
 #define LLTASK_H
 

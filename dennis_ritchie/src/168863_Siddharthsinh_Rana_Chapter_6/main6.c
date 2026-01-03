@@ -9,7 +9,7 @@ int32_t main6(){
     int32_t ch;
 
     printf("Chapter 6:\n");
-    printf("Enter a choice 1 or 2:\n");
+    printf("Enter a choice from 1 to 6:\n");
 
     if (scanf("%d", &choice) != 1) {
         printf("Invalid input!\n");
@@ -21,7 +21,11 @@ int32_t main6(){
     switch(choice){
         case 1:  exercise6_1();  break;
         case 2:  exercise6_2();  break;
-
+        case 3:  exercise6_3();  break;
+        case 4:  exercise6_4();  break;
+        case 5:  exercise6_5();  break;
+        case 6:  exercise6_6();  break;
+        
         default:
             printf("Invalid choice!\n");
             return 1;

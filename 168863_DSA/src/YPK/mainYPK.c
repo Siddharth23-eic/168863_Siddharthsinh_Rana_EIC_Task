@@ -29,10 +29,10 @@ int32_t mainYPK(){
                 ypk_task5();
                 break;
             case 4:
-                // Call YPK Task 6 function here
+                ypk_task6();
                 break;
             case 5:
-                // Call YPK Task 7 function here
+                ypk_task7();
                 break;
             default:
                 printf("Wrong choice for a task\n");

@@ -26,6 +26,6 @@ $(BINDIR)/$(TARGET): $(OBJ_FILES)
 
 # Clean
 clean:
-	rm -rf $(OBJDIR) $(BINDIR)
+	rm -rf $(OBJDIR) $(BINDIR) *.txt *.db *.log
 
 .PHONY: all clean

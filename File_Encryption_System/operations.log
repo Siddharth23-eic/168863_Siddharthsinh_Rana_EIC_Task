@@ -1,2 +1,5 @@
 1766394235 | Sid | CREATE | File.txt
 1766394253 | Sid | READ | File.txt
+1767173973 | kranti | CREATE | file12.txt
+1767174042 | kranti | READ | file12.txt
+1767174075 | kranti | APPEND | file12.txt

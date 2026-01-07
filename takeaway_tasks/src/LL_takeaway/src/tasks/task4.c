@@ -1,7 +1,8 @@
 /* Owner: Siddharthsinh Rana
  * Date: 02-01-2026
  * Topic: Linked List Takeaway Tasks
- * Description: Write a function int duplicatevalue(matrix* M, double value) that returns 1 if a  node with the value exists in the matrix. Return 0 if not.
+ * Description: Write a function int resize(matrix**) that doubles the rows and columns of the matrix. The old nodes need to be copied to the new matrix. Return 0 if success, 1 
+if failure.
 */
 
 #include <stdio.h>

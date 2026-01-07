@@ -1,30 +1,51 @@
-CC      = gcc
-CFLAGS  = -Wall -O3 -Iinclude
-LFLAGS	= -lm
-OBJDIR  = obj
-BINDIR  = bin
-TARGET  = $(BINDIR)/main
+CC := gcc
 
-# Collect all source files
-SRCFILES := $(wildcard src/*.c src/*/main*.c src/*/source/*.c)
+OBJDIR := obj
+BINDIR := bin
+TARGET := $(BINDIR)/main
 
-# Map src/chapterX/... to obj/chapterX/...
-OBJS := $(patsubst src/%.c,$(OBJDIR)/%.o,$(SRCFILES))
+# -------------------------------------------------
+# Include paths
+# -------------------------------------------------
+INC_DIRS := include $(shell find src -type d -name include)
+CFLAGS := -Wall -Wextra -O3 $(addprefix -I,$(INC_DIRS))
+LDFLAGS := -lm
 
-# Fix "chapter/source/*c" → "chapter/*.o"
-OBJS := $(patsubst %/source/%.o,%/%.o,$(OBJS))
+# -------------------------------------------------
+# Collect all sources
+# -------------------------------------------------
+SRCFILES := $(shell find src -name '*.c')
 
+# -------------------------------------------------
+# Object mapping (ORDER IS CRITICAL)
+# -------------------------------------------------
+OBJS := $(SRCFILES)
+OBJS := $(OBJS:/src/=/obj/)
+OBJS := $(OBJS:src/%=$(OBJDIR)/%)
+OBJS := $(OBJS:.c=.o)
+
+# -------------------------------------------------
+# Build
+# -------------------------------------------------
 all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	@mkdir -p $(BINDIR)
-	$(CC) $(CFLAGS) $^ -o $@ $(LFLAGS)
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
-# Generic rule: compile any .c in src/ → .o in obj/, flattening "source"
-$(OBJDIR)/%.o: src/%.c
+# -------------------------------------------------
+# Compile rule (exact reverse mapping)
+# -------------------------------------------------
+$(OBJDIR)/%.o:
 	@mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(CFLAGS) -c \
+	  $(patsubst $(OBJDIR)/%.o,src/%.c,$(subst /obj/,/src/,$@)) \
+	  -o $@
 
+# -------------------------------------------------
+# Clean
+# -------------------------------------------------
 clean:
 	rm -rf $(OBJDIR) $(BINDIR)
 
+.PHONY: all clean

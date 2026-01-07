@@ -8,9 +8,10 @@
 #include <stdlib.h>
 #include "smatrix.h"
 
-int32_t mainLL(){
+int main(void){
     int32_t rows, cols;
     double dup;
+    char choice;
 
     printf("Enter number of rows: ");
     scanf("%d", &rows);
@@ -18,21 +19,40 @@ int32_t mainLL(){
     scanf("%d", &cols);
 
     matrix *matt = createMatrix(rows, cols);
-    printMatrix(matt);
-    
+    if (!matt) {
+        printf("Matrix allocation failed\n");
+        return 1;
+    }
+
     add_elements(matt);
     printMatrix(matt);
 
     printf("Enter a value to check dup: ");
     scanf("%lf", &dup);
 
-    if(duplicateValue(matt, dup))
-        printf("Value %lf exist in matrix\n", dup);
+    if (duplicateValue(matt, dup))
+        printf("Value %lf exists in matrix\n", dup);
     else
         printf("Value %lf doesn't exist in matrix\n", dup);
 
-    resizeMatrix(&matt);
+    if (resizeMatrix(&matt) != 0) {
+        printf("Resize failed\n");
+        freeMatrix(matt);
+        return 1;
+    }
+
     printMatrix(matt);
 
+    printf("Transpose matrix? (y or n): ");
+    scanf(" %c", &choice);
+
+    if (choice == 'y' || choice == 'Y') {
+        if (transposeMatrix(&matt) == 0)
+            printMatrix(matt);
+        else
+            printf("Transpose failed\n");
+    }
+
+    freeMatrix(matt);
     return 0;
 }

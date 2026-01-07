@@ -11,6 +11,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <unistd.h>
 #include "dirent1.h"
 
 #define MAX_PATH 1024
@@ -18,37 +19,37 @@
 void fsize(const char *name);
 void dirwalk(const char *dir, void (*fcn)(const char *));
 
-void fsize(const char *name)
-{
+void fsize(const char *name){
     struct stat st;
 
-    if (stat(name, &st) == -1) {
+    /* lstat so symlinks don't explode recursion */
+    if (lstat(name, &st) == -1) {
         fprintf(stderr, "fsize: can't access %s\n", name);
         return;
     }
 
-    if ((st.st_mode & S_IFMT) == S_IFDIR)
-        dirwalk(name, fsize);
-
-    printf("%8ld %8ld %8ld %8o %8d %8ld %s\n",
-        (long)st.st_size, 
-        (long)st.st_blocks,
-        (long)st.st_blksize,
-        st.st_mode,
-        st.st_gid,
-        (long)st.st_nlink,
+    /* Print inode information */
+    printf("%8lu %4ld %4d %4d %8ld %06o %s\n",
+        (unsigned long)st.st_ino,     /* inode number */
+        (long)st.st_nlink,            /* link count */
+        st.st_uid,                    /* owner */
+        st.st_gid,                    /* group */
+        (long)st.st_size,             /* file size */
+        st.st_mode & 07777,           /* permissions */
         name
     );
+
+    /* Recurse AFTER printing */
+    if (S_ISDIR(st.st_mode))
+        dirwalk(name, fsize);
 }
 
-void dirwalk(const char *dir, void (*fcn)(const char *))
-{
+void dirwalk(const char *dir, void (*fcn)(const char *)){
     char path[MAX_PATH];
     CDIR *dp;
     CDirent *d;
 
-    dp = opendir_c(dir);
-    if (!dp) {
+    if ((dp = opendir_c(dir)) == NULL) {
         fprintf(stderr, "dirwalk: can't open %s\n", dir);
         return;
     }
@@ -58,7 +59,8 @@ void dirwalk(const char *dir, void (*fcn)(const char *))
         if (strcmp(d->name, ".") == 0 || strcmp(d->name, "..") == 0)
             continue;
 
-        if (snprintf(path, sizeof(path), "%s/%s", dir, d->name) >= sizeof(path)) {
+        if (snprintf(path, sizeof(path), "%s/%s", dir, d->name)
+            >= sizeof(path)) {
             fprintf(stderr, "dirwalk: name too long: %s/%s\n", dir, d->name);
             continue;
         }
@@ -69,13 +71,14 @@ void dirwalk(const char *dir, void (*fcn)(const char *))
     closedir_c(dp);
 }
 
-int32_t exercise8_5(int32_t argc, char *argv[]) {
-    if (argc == 1){
-        printf("Run it like -> ./a.out dirname");
+int32_t exercise8_5(int32_t argc, char *argv[]){
+    if (argc == 1) {
+        fprintf(stderr, "Usage: %s <directory>\n", argv[0]);
         return 1;
     }
-    else
-        while (--argc > 0)
-            fsize(*++argv);
+
+    while (--argc > 0)
+        fsize(*++argv);
+
     return 0;
 }

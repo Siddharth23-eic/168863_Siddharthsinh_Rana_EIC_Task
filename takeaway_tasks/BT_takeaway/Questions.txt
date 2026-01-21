@@ -1,0 +1,23 @@
+Q:Is it an animal?
+Q:Can it fly?
+A:Bird
+Q:Does it have a tail?
+Q:Does it squeak?
+A:Mouse
+Q:Does it have a trunk?
+A:Elephant
+Q:Does it have long neck?
+A:Giraffe
+Q:Does it give milk?
+A:Cow
+A:Lion
+A:Spider
+Q:Does it have wheels?
+Q:Does it have an engine?
+A:Car
+A:Bicycle
+Q:Is it nice?
+Q:Is it nice and caring?
+A:Mother
+A:Section Leader
+A:Teacher
